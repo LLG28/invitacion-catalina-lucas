@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Invitación de matrimonio de Catalina y Lucas"
+    />
+    <title>Catalina & Lucas — Nos casamos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Parisienne&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body class="locked">
+    <div class="grain" aria-hidden="true"></div>
+
+    <section class="welcome" id="welcome" aria-label="Abrir invitación">
+      <div class="welcome-copy">
+        <p class="eyebrow">Estás invitado/a a celebrar</p>
+        <h1>Catalina <span>&</span> Lucas</h1>
+        <p class="passes">Hemos reservado <strong>2 lugares</strong> en tu honor</p>
+      </div>
+
+      <button class="envelope" id="openInvitation" aria-label="Abrir invitación">
+        <span class="envelope-back"></span>
+        <span class="envelope-card">
+          <span class="card-flower flower-left"></span>
+          <span class="card-flower flower-right"></span>
+          <span class="monogram">C <i>&</i> L</span>
+          <span class="card-date">31 · 10 · 2026</span>
+        </span>
+        <span class="envelope-front"></span>
+        <span class="envelope-flap"></span>
+        <span class="seal">L<span>&</span>S</span>
+      </button>
+
+      <button class="open-label" id="openLabel">Abrir invitación</button>
+      <p class="sound-hint">Toca para comenzar</p>
+    </section>
+
+    <main id="invitation" aria-hidden="true">
+      <header class="hero" id="inicio">
+        <nav class="quick-nav" aria-label="Navegación principal">
+          <a href="#lugares">
+            <span>⌖</span>
+            Lugares
+          </a>
+          <a href="#vestimenta">
+            <span>♢</span>
+            Vestimenta
+          </a>
+          <a href="#regalos">
+            <span>♡</span>
+            Regalos
+          </a>
+          <a href="#confirmacion">
+            <span>✓</span>
+            Confirmar
+          </a>
+        </nav>
+
+        <div class="hero-ornament ornament-top" aria-hidden="true"></div>
+        <div class="hero-content reveal">
+          <p class="eyebrow light">Con mucha alegría</p>
+          <p class="script-title">¡Nos casamos!</p>
+          <h2>Catalina <span>&</span> Lucas</h2>
+          <div class="date-lockup">
+            <span>SÁBADO</span>
+            <strong>31</strong>
+            <span>OCTUBRE<br />2026</span>
+          </div>
+          <p class="hero-time">a las 18:00 horas</p>
+          <a class="scroll-cue" href="#historia" aria-label="Continuar">↓</a>
+        </div>
+        <div class="hero-ornament ornament-bottom" aria-hidden="true"></div>
+      </header>
+
+      <section class="intro paper-section" id="historia">
+        <div class="botanical botanical-a" aria-hidden="true"></div>
+        <div class="section-inner narrow reveal">
+          <p class="eyebrow">Nuestra historia continúa</p>
+          <h2>Queremos celebrar<br />este día contigo</h2>
+          <p class="lead">
+            Después de tantos caminos compartidos, risas, aprendizajes y sueños,
+            hemos decidido dar el siguiente paso.
+          </p>
+          <div class="signature">C & L</div>
+        </div>
+      </section>
+
+      <section class="countdown-section">
+        <div class="countdown-photo" role="img" aria-label="Pareja caminando entre árboles">
+          <div class="photo-overlay"></div>
+          <div class="countdown-content reveal">
+            <p class="eyebrow light">Cada vez falta menos</p>
+            <h2>Para nuestro gran día</h2>
+            <div class="countdown" id="countdown" aria-label="Cuenta regresiva">
+              <div><strong id="days">000</strong><span>Días</span></div>
+              <div><strong id="hours">00</strong><span>Horas</span></div>
+              <div><strong id="minutes">00</strong><span>Minutos</span></div>
+              <div><strong id="seconds">00</strong><span>Segundos</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="venues paper-section" id="lugares">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Dónde y cuándo</p>
+          <h2>Te esperamos</h2>
+        </div>
+
+        <div class="venue-grid">
+          <article class="venue-card reveal">
+            <div class="venue-icon church-icon" aria-hidden="true">♰</div>
+            <p class="card-kicker">Ceremonia · 18:00</p>
+            <h3>Iglesia<br />Majadas Pirque</h3>
+            <p>Majadas de Pirque<br />Pirque, Región Metropolitana</p>
+            <a
+              class="button button-outline"
+              href="https://www.google.com/maps/search/?api=1&query=Iglesia+Majadas+de+Pirque"
+              target="_blank"
+              rel="noreferrer"
+            >Ver en el mapa</a>
+          </article>
+
+          <article class="venue-card dark-card reveal">
+            <div class="venue-icon" aria-hidden="true">❦</div>
+            <p class="card-kicker">Celebración · 19:00</p>
+            <h3>Estancia<br />Pirque</h3>
+            <p>Estancia Pirque<br />Pirque, Región Metropolitana</p>
+            <a
+              class="button button-light"
+              href="https://www.google.com/maps/search/?api=1&query=Estancia+Pirque"
+              target="_blank"
+              rel="noreferrer"
+            >Ver en el mapa</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="timeline-section">
+        <div class="section-heading light-heading reveal">
+          <p class="eyebrow light">Guarda energía</p>
+          <h2>Así viviremos el día</h2>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item reveal">
+            <span class="timeline-art rings" aria-hidden="true">◯◯</span>
+            <div>
+              <time>18:00</time>
+              <h3>Ceremonia</h3>
+              <p>El comienzo de nuestra nueva aventura.</p>
+            </div>
+          </article>
+          <article class="timeline-item reverse reveal">
+            <span class="timeline-art" aria-hidden="true">🥂</span>
+            <div>
+              <time>19:00</time>
+              <h3>Cóctel</h3>
+              <p>Brindemos por los encuentros y el amor.</p>
+            </div>
+          </article>
+          <article class="timeline-item reveal">
+            <span class="timeline-art" aria-hidden="true">✦</span>
+            <div>
+              <time>21:00</time>
+              <h3>Cena</h3>
+              <p>Una mesa larga, rica comida y buena compañía.</p>
+            </div>
+          </article>
+          <article class="timeline-item reverse reveal">
+            <span class="timeline-art disco" aria-hidden="true">◉</span>
+            <div>
+              <time>23:00</time>
+              <h3>Fiesta</h3>
+              <p>Hasta que los pies nos pidan descanso.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="details paper-section">
+        <article class="detail-block reveal" id="vestimenta">
+          <div class="detail-illustration dress" aria-hidden="true">♢</div>
+          <p class="eyebrow">Código de vestimenta</p>
+          <h2>Formal</h2>
+          <p>
+            Ellos con traje y ellas con vestido largo.<br />
+            El blanco se lo reservamos a la novia.
+          </p>
+          <a class="text-link" href="https://www.pinterest.com/search/pins/?q=wedding%20formal%20attire" target="_blank" rel="noreferrer">
+            Ver inspiración →
+          </a>
+        </article>
+
+        <div class="detail-divider" aria-hidden="true">✦</div>
+
+        <article class="detail-block reveal" id="regalos">
+          <div class="detail-illustration" aria-hidden="true">⌑</div>
+          <p class="eyebrow">El mejor regalo es tu presencia</p>
+          <h2>Regalos</h2>
+          <p>
+            Si además deseas hacernos un regalo, puedes ayudarnos a construir
+            nuestra próxima aventura.
+          </p>
+          <button class="button button-outline" id="showBank">Ver datos bancarios</button>
+          <div class="bank-details" id="bankDetails" aria-hidden="true">
+            <button class="close-bank" id="closeBank" aria-label="Cerrar">×</button>
+            <p class="eyebrow">Datos bancarios</p>
+            <h3>Lucas Linzmayer</h3>
+            <p>Banco Ejemplo · Cuenta Corriente</p>
+            <button class="copy-data" data-copy="12.345.678-9 · 00012345678">
+              Copiar datos
+            </button>
+          </div>
+        </article>
+      </section>
+
+      <section class="quote-section">
+        <div class="quote-card reveal">
+          <span class="quote-mark">“</span>
+          <blockquote>
+            El amor no consiste en mirarse el uno al otro, sino en mirar juntos
+            en la misma dirección.
+          </blockquote>
+          <cite>Antoine de Saint-Exupéry</cite>
+        </div>
+      </section>
+
+      <section class="rsvp paper-section" id="confirmacion">
+        <div class="botanical botanical-b" aria-hidden="true"></div>
+        <div class="rsvp-wrap">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Nos haría muy felices verte</p>
+            <h2>Confirma tu asistencia</h2>
+            <p>Por favor responde antes del 1 de octubre de 2026.</p>
+          </div>
+
+          <form class="rsvp-form reveal" id="rsvpForm">
+            <label>
+              Nombre y apellido
+              <input type="text" name="nombre" placeholder="Tu nombre" required />
+            </label>
+            <label>
+              Correo electrónico
+              <input type="email" name="email" placeholder="nombre@correo.cl" required />
+            </label>
+            <fieldset>
+              <legend>¿Podrás acompañarnos?</legend>
+              <label class="radio-card">
+                <input type="radio" name="asistencia" value="Sí" required />
+                <span>Sí, ahí estaré</span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="asistencia" value="No" />
+                <span>No podré asistir</span>
+              </label>
+            </fieldset>
+            <label>
+              Alimentación o mensaje
+              <textarea
+                name="mensaje"
+                rows="4"
+                placeholder="Cuéntanos si tienes alguna restricción alimentaria..."
+              ></textarea>
+            </label>
+            <button class="button button-solid" type="submit">Enviar confirmación</button>
+          </form>
+          <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+            <span>✓</span>
+            <h3>¡Gracias por responder!</h3>
+            <p>Tu confirmación quedó registrada en este dispositivo.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="footer-monogram">C <span>&</span> L</div>
+        <p>31 · 10 · 2026</p>
+        <h2>¡Te esperamos!</h2>
+        <a href="#inicio">Volver arriba ↑</a>
+      </footer>
+    </main>
+  </body>
+</html>
