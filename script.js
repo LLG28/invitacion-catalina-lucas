@@ -2,6 +2,103 @@ const welcome = document.querySelector("#welcome");
 const invitation = document.querySelector("#invitation");
 const envelope = document.querySelector("#openInvitation");
 const openLabel = document.querySelector("#openLabel");
+const accessGate = document.querySelector("#accessGate");
+const accessForm = document.querySelector("#accessForm");
+const accessError = document.querySelector("#accessError");
+const accessCode = document.querySelector("#accessCode");
+const guestGreeting = document.querySelector("#guestGreeting");
+const guestPasses = document.querySelector("#guestPasses");
+
+const ACCESS_ENDPOINT =
+  "https://script.google.com/macros/s/AKfycbyawLCMjaiokN4PChH_KcH7JxxOI6fUTaMLXUY5noxDFu4vZJ2pTZNdeBHPAsuBF5_H/exec";
+const ACCESS_ENABLED = true;
+
+function authorizeGuest(guest = {}) {
+  const name = String(guest.nombre || "").trim();
+  const passes = Math.max(1, Number(guest.cupos) || 2);
+  const code = String(guest.codigo || "").trim();
+
+  guestGreeting.textContent = name ? `Bienvenido/a, ${name}` : "";
+  guestPasses.textContent = `${passes} ${passes === 1 ? "lugar" : "lugares"}`;
+  accessGate.classList.add("authorized");
+  accessGate.setAttribute("aria-hidden", "true");
+  sessionStorage.setItem(
+    "wedding-access",
+    JSON.stringify({ nombre: name, cupos: passes, codigo: code }),
+  );
+}
+
+function validateAccessCode(code) {
+  return new Promise((resolve, reject) => {
+    const callbackName = `weddingAccess_${Date.now()}_${Math.random()
+      .toString(36)
+      .slice(2)}`;
+    const script = document.createElement("script");
+    const timeout = window.setTimeout(() => {
+      cleanup();
+      reject(new Error("No pudimos validar el código. Intenta nuevamente."));
+    }, 12000);
+
+    function cleanup() {
+      window.clearTimeout(timeout);
+      script.remove();
+      delete window[callbackName];
+    }
+
+    window[callbackName] = (response) => {
+      cleanup();
+      resolve(response);
+    };
+
+    script.onerror = () => {
+      cleanup();
+      reject(new Error("No pudimos conectar con el servicio de invitaciones."));
+    };
+
+    const params = new URLSearchParams({
+      action: "validate",
+      codigo: code,
+      callback: callbackName,
+    });
+    script.src = `${ACCESS_ENDPOINT}?${params.toString()}`;
+    document.head.appendChild(script);
+  });
+}
+
+if (!ACCESS_ENABLED) {
+  authorizeGuest();
+} else {
+  try {
+    const savedGuest = JSON.parse(sessionStorage.getItem("wedding-access"));
+    if (savedGuest) authorizeGuest(savedGuest);
+  } catch {
+    sessionStorage.removeItem("wedding-access");
+  }
+}
+
+accessForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const button = accessForm.querySelector("[type='submit']");
+  const code = accessCode.value.toUpperCase().replace(/[^A-Z0-9]/g, "");
+
+  accessError.textContent = "";
+  button.disabled = true;
+  button.textContent = "Validando...";
+
+  try {
+    const result = await validateAccessCode(code);
+    if (!result || !result.ok) {
+      throw new Error("El código no es válido o está desactivado.");
+    }
+    authorizeGuest(result);
+  } catch (error) {
+    accessError.textContent = error.message;
+    accessCode.select();
+  } finally {
+    button.disabled = false;
+    button.textContent = "Continuar";
+  }
+});
 
 function openInvitation() {
   if (envelope.classList.contains("is-opening")) return;
@@ -86,6 +183,11 @@ rsvpForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   const submitButton = rsvpForm.querySelector("[type='submit']");
   const response = Object.fromEntries(new FormData(rsvpForm).entries());
+  try {
+    response.codigo = JSON.parse(sessionStorage.getItem("wedding-access"))?.codigo || "";
+  } catch {
+    response.codigo = "";
+  }
 
   submitButton.disabled = true;
   submitButton.textContent = "Enviando...";

@@ -20,11 +20,37 @@
   <body class="locked">
     <div class="grain" aria-hidden="true"></div>
 
+    <section class="access-gate" id="accessGate" aria-label="Acceso a la invitación">
+      <div class="access-card">
+        <div class="access-monogram">C <span>&</span> L</div>
+        <p class="eyebrow">Invitación privada</p>
+        <h1>Ingresa tu código</h1>
+        <p class="access-copy">
+          Encontrarás el código junto al enlace que te enviamos.
+        </p>
+        <form id="accessForm" class="access-form">
+          <label for="accessCode">Código de invitación</label>
+          <input
+            id="accessCode"
+            name="codigo"
+            type="text"
+            autocomplete="one-time-code"
+            maxlength="12"
+            placeholder="Ej: 7K9M2QPX"
+            required
+          />
+          <button class="button button-solid" type="submit">Continuar</button>
+          <p class="access-error" id="accessError" role="alert" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
     <section class="welcome" id="welcome" aria-label="Abrir invitación">
       <div class="welcome-copy">
         <p class="eyebrow">Estás invitado/a a celebrar</p>
         <h1>Catalina <span>&</span> Lucas</h1>
-        <p class="passes">Hemos reservado <strong>2 lugares</strong> en tu honor</p>
+        <p class="guest-greeting" id="guestGreeting"></p>
+        <p class="passes">Hemos reservado <strong id="guestPasses">2 lugares</strong> en tu honor</p>
       </div>
 
       <button class="envelope" id="openInvitation" aria-label="Abrir invitación">
@@ -37,7 +63,7 @@
         </span>
         <span class="envelope-front"></span>
         <span class="envelope-flap"></span>
-        <span class="seal">L<span>&</span>S</span>
+        <span class="seal">C<span>&</span>L</span>
       </button>
 
       <button class="open-label" id="openLabel">Abrir invitación</button>
