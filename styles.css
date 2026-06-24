@@ -764,75 +764,51 @@ main.visible {
   font-size: 3.2rem;
 }
 
-.dogs-section {
-  position: relative;
-  padding: 70px 22px 105px;
-  text-align: center;
-}
-
-.dogs-copy {
-  position: relative;
-  z-index: 3;
-  max-width: 700px;
-  margin: 0 auto -40px;
-}
-
-.dogs-copy h2 {
-  margin: 0;
-  color: var(--olive-dark);
-  font-family: var(--serif);
-  font-size: clamp(2.7rem, 8vw, 5.2rem);
-  font-weight: 500;
-  line-height: 0.9;
-}
-
-.dogs-portrait {
-  position: relative;
+.dog-decoration {
+  position: absolute;
   z-index: 2;
-  width: min(100%, 940px);
-  margin: 0 auto;
+  width: clamp(145px, 19vw, 255px);
+  margin: 0;
+  pointer-events: none;
 }
 
-.dogs-portrait img {
+.dog-decoration img {
   display: block;
   width: 100%;
   height: auto;
+  opacity: 0.78;
   mix-blend-mode: multiply;
+  filter: saturate(0.82) contrast(0.92);
+  -webkit-mask-image: radial-gradient(
+    ellipse 48% 46% at center,
+    #000 38%,
+    rgba(0, 0, 0, 0.88) 58%,
+    transparent 84%
+  );
+  mask-image: radial-gradient(
+    ellipse 48% 46% at center,
+    #000 38%,
+    rgba(0, 0, 0, 0.88) 58%,
+    transparent 84%
+  );
 }
 
-.dogs-caption {
-  position: relative;
-  z-index: 3;
-  max-width: 560px;
-  margin: -18px auto 0;
-  color: var(--berry);
-  font-family: var(--script);
-  font-size: clamp(1.6rem, 4vw, 2.3rem);
-  line-height: 1.2;
+.dog-dane {
+  right: max(1vw, calc((100vw - 1180px) / 2));
+  bottom: -38px;
+  transform: rotate(2deg);
 }
 
-.paint-swatch {
-  position: absolute;
-  z-index: 1;
-  width: 190px;
-  height: 150px;
-  border-radius: 54% 46% 61% 39%;
-  opacity: 0.18;
-  filter: blur(1px);
+.dog-golden {
+  left: max(1vw, calc((100vw - 1180px) / 2));
+  bottom: -42px;
+  transform: rotate(-3deg);
 }
 
-.swatch-coral {
-  top: 15%;
-  left: -55px;
-  background: var(--coral);
-  transform: rotate(18deg);
-}
-
-.swatch-blue {
-  right: -45px;
-  bottom: 13%;
-  background: var(--blue);
-  transform: rotate(-14deg);
+.dog-collie {
+  right: max(1vw, calc((100vw - 1120px) / 2));
+  bottom: -45px;
+  transform: rotate(3deg);
 }
 
 .botanical {
@@ -1471,18 +1447,24 @@ footer a {
     right: -8%;
   }
 
-  .dogs-section {
-    padding: 75px 10px 85px;
+  .dog-decoration {
+    width: 150px;
+    opacity: 0.72;
   }
 
-  .dogs-copy {
-    margin-bottom: -15px;
-    padding: 0 14px;
+  .dog-dane {
+    right: -42px;
+    bottom: -34px;
   }
 
-  .dogs-caption {
-    margin-top: -5px;
-    padding: 0 22px;
+  .dog-golden {
+    left: -38px;
+    bottom: -30px;
+  }
+
+  .dog-collie {
+    right: -40px;
+    bottom: -34px;
   }
 
   .date-lockup {
