@@ -63,6 +63,10 @@ body.locked {
   transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 
+.access-gate[hidden] {
+  display: none !important;
+}
+
 .access-gate.authorized {
   opacity: 0;
   visibility: hidden;

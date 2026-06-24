@@ -14,6 +14,10 @@ const ACCESS_ENDPOINT =
 // Acceso por código temporalmente desactivado. Cambiar a true para reactivarlo.
 const ACCESS_ENABLED = false;
 
+if (ACCESS_ENABLED) {
+  accessGate.hidden = false;
+}
+
 function authorizeGuest(guest = {}) {
   const name = String(guest.nombre || "").trim();
   const passes = Math.max(1, Number(guest.cupos) || 2);
