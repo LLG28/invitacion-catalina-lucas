@@ -1171,49 +1171,11 @@ main.visible {
   text-transform: uppercase;
 }
 
-.bank-details {
-  position: fixed;
-  z-index: 110;
-  inset: 50% auto auto 50%;
-  width: min(90vw, 430px);
-  padding: 45px 30px;
-  border: 1px solid var(--gold);
-  background: var(--paper);
-  box-shadow: 0 30px 90px rgba(20, 25, 14, 0.45);
-  opacity: 0;
-  visibility: hidden;
-  transform: translate(-50%, -45%) scale(0.96);
-  transition: 0.3s ease;
-}
-
-.bank-details.visible {
-  opacity: 1;
-  visibility: visible;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.bank-details h3 {
-  font-family: var(--serif);
-  font-size: 2rem;
-}
-
-.close-bank {
-  position: absolute;
-  top: 10px;
-  right: 14px;
-  border: 0;
-  background: none;
-  color: var(--olive);
-  font-size: 1.6rem;
-  cursor: pointer;
-}
-
-.copy-data {
-  padding: 10px 16px;
-  border: 1px solid var(--olive);
-  background: none;
-  color: var(--olive);
-  cursor: pointer;
+.button-coming-soon {
+  min-width: 245px;
+  border-color: rgba(151, 0, 67, 0.38);
+  color: rgba(151, 0, 67, 0.72);
+  cursor: default;
 }
 
 .quote-section {

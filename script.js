@@ -155,27 +155,6 @@ const observer = new IntersectionObserver(
 
 document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
 
-const bankDetails = document.querySelector("#bankDetails");
-document.querySelector("#showBank").addEventListener("click", () => {
-  bankDetails.classList.add("visible");
-  bankDetails.setAttribute("aria-hidden", "false");
-});
-
-document.querySelector("#closeBank").addEventListener("click", () => {
-  bankDetails.classList.remove("visible");
-  bankDetails.setAttribute("aria-hidden", "true");
-});
-
-document.querySelector(".copy-data").addEventListener("click", async (event) => {
-  const button = event.currentTarget;
-  try {
-    await navigator.clipboard.writeText(button.dataset.copy);
-    button.textContent = "Datos copiados ✓";
-  } catch {
-    button.textContent = button.dataset.copy;
-  }
-});
-
 const rsvpForm = document.querySelector("#rsvpForm");
 const formSuccess = document.querySelector("#formSuccess");
 
