@@ -18,7 +18,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css?v=20260624-2" />
-    <script src="script.js?v=20260624-2" defer></script>
+    <script src="script.js?v=20260624-3" defer></script>
   </head>
   <body class="locked">
     <div class="grain" aria-hidden="true"></div>
@@ -326,7 +326,13 @@
             </label>
             <button class="button button-solid" type="submit">Enviar confirmación</button>
           </form>
-          <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+          <div
+            class="form-success"
+            id="formSuccess"
+            role="status"
+            aria-live="polite"
+            tabindex="-1"
+          >
             <span>✓</span>
             <h3>¡Gracias por responder!</h3>
             <p>Tu confirmación quedó registrada en este dispositivo.</p>

@@ -213,8 +213,19 @@ rsvpForm.addEventListener("submit", async (event) => {
       body: new URLSearchParams(response),
     });
 
+    rsvpForm.reset();
     rsvpForm.hidden = true;
     formSuccess.classList.add("visible");
+    submitButton.disabled = false;
+    submitButton.textContent = "Enviar confirmación";
+
+    window.requestAnimationFrame(() => {
+      formSuccess.focus({ preventScroll: true });
+      formSuccess.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    });
   } catch (error) {
     submitButton.disabled = false;
     submitButton.textContent = "Enviar confirmación";
