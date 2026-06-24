@@ -537,7 +537,7 @@ main.visible {
     radial-gradient(ellipse at 8% 82%, rgba(217, 95, 136, 0.76) 0 13%, transparent 13.4%),
     radial-gradient(ellipse at 92% 22%, rgba(181, 206, 226, 0.88) 0 15%, transparent 15.4%),
     radial-gradient(ellipse at 17% 18%, rgba(247, 212, 119, 0.72) 0 8%, transparent 8.4%),
-    linear-gradient(rgba(255, 252, 246, 0.84), rgba(255, 252, 246, 0.84)),
+    linear-gradient(rgba(255, 252, 246, 0.34), rgba(255, 252, 246, 0.34)),
     url("assets/papel-textura.jpg") center / 640px auto repeat;
   color: var(--ink);
   text-align: center;
