@@ -11,6 +11,7 @@
   --gold-light: var(--yellow);
   --paper: #fff9ef;
   --paper-deep: #f7ead8;
+  --paper-shadow: #ead8c0;
   --ink: #3c302a;
   --white: #fffdf8;
   --shadow: 0 24px 60px rgba(70, 35, 42, 0.22);
@@ -220,7 +221,9 @@ a {
   overflow: hidden;
   padding: 28px 20px;
   background:
-    radial-gradient(circle at 70% 15%, rgba(247, 212, 119, 0.25), transparent 30%),
+    radial-gradient(ellipse at 12% 12%, var(--yellow) 0 10%, transparent 10.5%),
+    radial-gradient(ellipse at 92% 86%, var(--pink) 0 14%, transparent 14.5%),
+    radial-gradient(ellipse at 88% 8%, var(--coral) 0 8%, transparent 8.5%),
     linear-gradient(145deg, var(--olive), var(--olive-dark) 55%, #575819);
   color: var(--white);
   text-align: center;
@@ -323,6 +326,32 @@ a {
   color: var(--olive);
   transform: translateY(7%);
   transition: transform 1.1s cubic-bezier(0.22, 0.8, 0.25, 1);
+}
+
+.card-flower {
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  border-radius: 52% 48% 55% 45%;
+  background:
+    radial-gradient(circle at 50% 50%, var(--yellow) 0 13%, transparent 14%),
+    radial-gradient(ellipse at 50% 15%, var(--pink) 0 19%, transparent 20%),
+    radial-gradient(ellipse at 85% 50%, var(--coral) 0 19%, transparent 20%),
+    radial-gradient(ellipse at 50% 85%, var(--berry) 0 19%, transparent 20%),
+    radial-gradient(ellipse at 15% 50%, var(--blue) 0 19%, transparent 20%);
+  opacity: 0.9;
+}
+
+.flower-left {
+  bottom: 11%;
+  left: 8%;
+  transform: rotate(-14deg);
+}
+
+.flower-right {
+  top: 9%;
+  right: 8%;
+  transform: rotate(18deg) scale(0.8);
 }
 
 .monogram {
@@ -471,10 +500,12 @@ main.visible {
   overflow: hidden;
   padding: 130px 20px 70px;
   background:
-    linear-gradient(rgba(91, 72, 22, 0.7), rgba(105, 0, 47, 0.82)),
-    radial-gradient(circle at 40% 25%, var(--coral), transparent 42%),
-    linear-gradient(135deg, var(--olive), var(--berry));
-  color: var(--white);
+    radial-gradient(ellipse at 8% 82%, rgba(217, 95, 136, 0.76) 0 13%, transparent 13.4%),
+    radial-gradient(ellipse at 92% 22%, rgba(181, 206, 226, 0.88) 0 15%, transparent 15.4%),
+    radial-gradient(ellipse at 17% 18%, rgba(247, 212, 119, 0.72) 0 8%, transparent 8.4%),
+    linear-gradient(rgba(255, 249, 239, 0.94), rgba(255, 249, 239, 0.94)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cfilter id='p'%3E%3CfeTurbulence baseFrequency='.62' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='.14'/%3E%3C/svg%3E");
+  color: var(--ink);
   text-align: center;
 }
 
@@ -519,9 +550,37 @@ main.visible {
   z-index: 2;
 }
 
+.hero-content::before,
+.hero-content::after {
+  content: "✿";
+  position: absolute;
+  z-index: -1;
+  color: var(--coral);
+  font-family: var(--serif);
+  font-size: clamp(3rem, 9vw, 6rem);
+  opacity: 0.72;
+}
+
+.hero-content::before {
+  top: -12%;
+  left: -28%;
+  transform: rotate(-18deg);
+}
+
+.hero-content::after {
+  right: -25%;
+  bottom: 7%;
+  color: var(--olive);
+  transform: rotate(20deg);
+}
+
+.hero .eyebrow.light {
+  color: var(--berry);
+}
+
 .script-title {
   margin: 0;
-  color: var(--gold-light);
+  color: var(--coral);
   font-family: var(--script);
   font-size: clamp(2.8rem, 11vw, 6rem);
   line-height: 1;
@@ -538,7 +597,7 @@ main.visible {
 .hero h2 span {
   display: inline-block;
   margin: 0 0.12em;
-  color: var(--gold);
+  color: var(--berry);
   font-family: var(--script);
   font-size: 0.62em;
 }
@@ -554,15 +613,15 @@ main.visible {
 .date-lockup span {
   min-width: 74px;
   padding: 7px 0;
-  border-top: 1px solid rgba(222, 192, 138, 0.65);
-  border-bottom: 1px solid rgba(222, 192, 138, 0.65);
+  border-top: 1px solid rgba(151, 0, 67, 0.42);
+  border-bottom: 1px solid rgba(151, 0, 67, 0.42);
   font-size: 0.64rem;
   line-height: 1.35;
   letter-spacing: 0.16em;
 }
 
 .date-lockup strong {
-  color: var(--gold-light);
+  color: var(--coral);
   font-family: var(--serif);
   font-size: 4.3rem;
   font-weight: 400;
@@ -582,9 +641,9 @@ main.visible {
   height: 40px;
   place-content: center;
   margin: 38px auto 0;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(133, 134, 42, 0.5);
   border-radius: 50%;
-  color: var(--white);
+  color: var(--olive-dark);
   text-decoration: none;
   animation: bob 2s infinite;
 }
@@ -597,8 +656,8 @@ main.visible {
   position: absolute;
   width: 330px;
   height: 330px;
-  border: 1px solid rgba(222, 192, 138, 0.24);
-  border-radius: 50%;
+  border: 2px solid rgba(151, 0, 67, 0.15);
+  border-radius: 43% 57% 52% 48%;
 }
 
 .ornament-top {
@@ -617,6 +676,17 @@ main.visible {
   background:
     linear-gradient(rgba(255, 249, 239, 0.94), rgba(255, 249, 239, 0.94)),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.7' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.15'/%3E%3C/svg%3E");
+}
+
+.paper-section::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  right: 5%;
+  bottom: 0;
+  left: 5%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(151, 0, 67, 0.18), transparent);
 }
 
 .section-inner,
@@ -658,6 +728,77 @@ main.visible {
   color: var(--gold);
   font-family: var(--script);
   font-size: 3.2rem;
+}
+
+.dogs-section {
+  position: relative;
+  padding: 70px 22px 105px;
+  text-align: center;
+}
+
+.dogs-copy {
+  position: relative;
+  z-index: 3;
+  max-width: 700px;
+  margin: 0 auto -40px;
+}
+
+.dogs-copy h2 {
+  margin: 0;
+  color: var(--olive-dark);
+  font-family: var(--serif);
+  font-size: clamp(2.7rem, 8vw, 5.2rem);
+  font-weight: 500;
+  line-height: 0.9;
+}
+
+.dogs-portrait {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 940px);
+  margin: 0 auto;
+}
+
+.dogs-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
+}
+
+.dogs-caption {
+  position: relative;
+  z-index: 3;
+  max-width: 560px;
+  margin: -18px auto 0;
+  color: var(--berry);
+  font-family: var(--script);
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  line-height: 1.2;
+}
+
+.paint-swatch {
+  position: absolute;
+  z-index: 1;
+  width: 190px;
+  height: 150px;
+  border-radius: 54% 46% 61% 39%;
+  opacity: 0.18;
+  filter: blur(1px);
+}
+
+.swatch-coral {
+  top: 15%;
+  left: -55px;
+  background: var(--coral);
+  transform: rotate(18deg);
+}
+
+.swatch-blue {
+  right: -45px;
+  bottom: 13%;
+  background: var(--blue);
+  transform: rotate(-14deg);
 }
 
 .botanical {
@@ -790,7 +931,8 @@ main.visible {
 
 .venue-card {
   padding: 62px 30px;
-  border: 1px solid rgba(70, 84, 44, 0.28);
+  border: 1px solid rgba(70, 84, 44, 0.22);
+  border-radius: 48% 52% 46% 54% / 4% 5% 4% 5%;
   background: color-mix(in srgb, var(--blue) 42%, var(--paper));
   text-align: center;
 }
@@ -1104,6 +1246,7 @@ cite {
   margin-top: 52px;
   padding: 45px;
   border: 1px solid rgba(70, 84, 44, 0.25);
+  border-radius: 9px 18px 7px 15px;
   background: color-mix(in srgb, var(--blue) 18%, rgba(255, 253, 248, 0.84));
 }
 
@@ -1263,7 +1406,7 @@ footer a {
   transform: translateY(0);
 }
 
-@media (max-width: 720px) {
+  @media (max-width: 720px) {
   main {
     width: 100dvw;
     max-width: 100dvw;
@@ -1321,6 +1464,29 @@ footer a {
   .hero h2 span {
     display: block;
     margin: 0.12em;
+  }
+
+  .hero-content::before {
+    top: -8%;
+    left: -10%;
+  }
+
+  .hero-content::after {
+    right: -8%;
+  }
+
+  .dogs-section {
+    padding: 75px 10px 85px;
+  }
+
+  .dogs-copy {
+    margin-bottom: -15px;
+    padding: 0 14px;
+  }
+
+  .dogs-caption {
+    margin-top: -5px;
+    padding: 0 22px;
   }
 
   .date-lockup {
@@ -1489,3 +1655,4 @@ footer a {
     transition-duration: 0.01ms !important;
   }
 }
+  color: var(--olive-dark);
