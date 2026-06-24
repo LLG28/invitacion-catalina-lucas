@@ -11,7 +11,8 @@ const guestPasses = document.querySelector("#guestPasses");
 
 const ACCESS_ENDPOINT =
   "https://script.google.com/macros/s/AKfycbyawLCMjaiokN4PChH_KcH7JxxOI6fUTaMLXUY5noxDFu4vZJ2pTZNdeBHPAsuBF5_H/exec";
-const ACCESS_ENABLED = true;
+// Acceso por código temporalmente desactivado. Cambiar a true para reactivarlo.
+const ACCESS_ENABLED = false;
 
 function authorizeGuest(guest = {}) {
   const name = String(guest.nombre || "").trim();
