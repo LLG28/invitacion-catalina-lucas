@@ -1490,32 +1490,60 @@ footer a {
   }
 
   .timeline::before {
-    left: 24px;
+    left: 27px;
   }
 
   .timeline-item,
   .timeline-item.reverse {
-    grid-template-columns: 64px 1fr;
-    gap: 18px;
-    min-height: 190px;
+    display: block;
+    min-height: 0;
+    margin-bottom: 64px;
+    padding-left: 78px;
+  }
+
+  .timeline-item:last-child {
+    margin-bottom: 0;
   }
 
   .timeline-item::after {
-    left: 24px;
+    top: 50%;
+    left: 27px;
+    transform: translate(-50%, -50%);
   }
 
   .timeline-item > div,
   .timeline-item.reverse > div {
-    grid-column: 2;
-    grid-row: 1;
+    min-width: 0;
     text-align: left;
   }
 
   .timeline-art,
   .reverse .timeline-art {
-    grid-column: 1;
-    font-size: 2.2rem;
-    text-align: left;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    display: grid;
+    width: 54px;
+    place-items: center;
+    font-size: 2rem;
+    line-height: 1;
+    text-align: center;
+    transform: translateY(-50%);
+  }
+
+  .timeline-item time {
+    display: block;
+    font-size: 2.25rem;
+    line-height: 1;
+  }
+
+  .timeline-item h3 {
+    margin: 6px 0;
+  }
+
+  .timeline-item p {
+    max-width: 260px;
+    line-height: 1.55;
   }
 
   .details {
