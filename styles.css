@@ -293,6 +293,10 @@ a {
   cursor: pointer;
   perspective: 1100px;
   filter: drop-shadow(0 30px 30px rgba(12, 18, 8, 0.38));
+  transform: translateY(0) scale(1);
+  transition:
+    transform 0.48s cubic-bezier(0.4, 0, 0.2, 1),
+    filter 0.48s ease;
 }
 
 .envelope:focus {
@@ -320,7 +324,6 @@ a {
   background:
     linear-gradient(rgba(154, 155, 69, 0.96), rgba(154, 155, 69, 0.96)),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cfilter id='p'%3E%3CfeTurbulence baseFrequency='.55' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='.16'/%3E%3C/svg%3E");
-  transition: opacity 0.22s ease 0.14s;
 }
 
 .envelope-card {
@@ -336,10 +339,10 @@ a {
   box-shadow: 0 3px 12px rgba(65, 51, 22, 0.16);
   color: var(--olive);
   opacity: 0;
-  transform: translateY(36%);
+  transform: translateY(14%) scale(0.985);
   transition:
-    transform 0.82s cubic-bezier(0.22, 0.8, 0.25, 1) 0.28s,
-    opacity 0.16s ease 0.28s;
+    transform 0.9s cubic-bezier(0.22, 0.75, 0.2, 1),
+    opacity 0.18s ease;
 }
 
 .card-flower {
@@ -427,9 +430,11 @@ a {
     #a0a14b;
   clip-path: polygon(0 0, 100% 0, 50% 59%);
   transform-origin: top;
+  backface-visibility: hidden;
+  transform: rotateX(0deg);
   transition:
-    opacity 0.28s ease 0.12s,
-    transform 0.32s ease 0.12s;
+    transform 0.48s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.12s ease 0.36s;
 }
 
 .seal {
@@ -449,7 +454,9 @@ a {
   font-family: var(--serif);
   font-size: 1rem;
   transform: translate(-50%, -50%);
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  transition:
+    opacity 0.22s ease,
+    transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .seal::before {
@@ -486,24 +493,29 @@ a {
   line-height: 1;
 }
 
-.envelope.is-opening .envelope-flap {
+.envelope.is-unsealing .seal {
   opacity: 0;
-  transform: translateY(-4%) scaleY(0.94);
+  transform: translate(-50%, -50%) scale(0.35) rotate(-8deg);
 }
 
-.envelope.is-opening .envelope-back {
+.envelope.is-flap-open .envelope-flap {
   opacity: 0;
-}
-
-.envelope.is-opening .seal {
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.6);
+  transform: rotateX(-178deg);
 }
 
 .envelope.is-extracting .envelope-card {
-  z-index: 2;
+  z-index: 6;
   opacity: 1;
-  transform: translateY(-82%);
+  transform: translateY(-84%) scale(1);
+}
+
+.envelope.is-leaving {
+  filter: drop-shadow(0 14px 18px rgba(12, 18, 8, 0.22));
+  transform: translateY(42px) scale(0.95);
+}
+
+.envelope.is-leaving .envelope-card {
+  transform: translateY(-100%) scale(1);
 }
 
 .open-label {

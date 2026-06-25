@@ -106,14 +106,24 @@ accessForm.addEventListener("submit", async (event) => {
 });
 
 function openInvitation() {
-  if (envelope.classList.contains("is-opening")) return;
+  if (envelope.dataset.animation === "running") return;
 
+  envelope.dataset.animation = "running";
+  envelope.setAttribute("aria-busy", "true");
   welcome.classList.add("opening");
-  envelope.classList.add("is-opening");
+  envelope.classList.add("is-unsealing");
+
+  window.setTimeout(() => {
+    envelope.classList.add("is-flap-open");
+  }, 240);
 
   window.setTimeout(() => {
     envelope.classList.add("is-extracting");
-  }, 300);
+  }, 680);
+
+  window.setTimeout(() => {
+    envelope.classList.add("is-leaving");
+  }, 1500);
 
   window.setTimeout(() => {
     welcome.classList.add("opened");
@@ -121,7 +131,7 @@ function openInvitation() {
     invitation.setAttribute("aria-hidden", "false");
     document.body.classList.remove("locked");
     window.scrollTo({ top: 0, behavior: "instant" });
-  }, 1400);
+  }, 1900);
 }
 
 envelope.addEventListener("click", openInvitation);
