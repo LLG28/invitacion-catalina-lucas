@@ -259,6 +259,7 @@ a {
 .welcome-copy {
   position: relative;
   z-index: 2;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .welcome h1 {
@@ -294,6 +295,15 @@ a {
   filter: drop-shadow(0 30px 30px rgba(12, 18, 8, 0.38));
 }
 
+.envelope:focus {
+  outline: none;
+}
+
+.envelope:focus-visible {
+  outline: 2px solid rgba(247, 212, 119, 0.8);
+  outline-offset: 7px;
+}
+
 .envelope-back,
 .envelope-front,
 .envelope-flap,
@@ -305,11 +315,12 @@ a {
 
 .envelope-back {
   overflow: hidden;
-  border: 1px solid rgba(247, 212, 119, 0.25);
+  border: 0;
   border-radius: 7px;
   background:
     linear-gradient(rgba(154, 155, 69, 0.96), rgba(154, 155, 69, 0.96)),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cfilter id='p'%3E%3CfeTurbulence baseFrequency='.55' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='.16'/%3E%3C/svg%3E");
+  transition: opacity 0.22s ease 0.14s;
 }
 
 .envelope-card {
@@ -325,10 +336,10 @@ a {
   box-shadow: 0 3px 12px rgba(65, 51, 22, 0.16);
   color: var(--olive);
   opacity: 0;
-  transform: translateY(43%);
+  transform: translateY(36%);
   transition:
-    transform 1.1s cubic-bezier(0.22, 0.8, 0.25, 1),
-    opacity 0.18s ease 0.34s;
+    transform 0.82s cubic-bezier(0.22, 0.8, 0.25, 1) 0.28s,
+    opacity 0.16s ease 0.28s;
 }
 
 .card-flower {
@@ -416,7 +427,9 @@ a {
     #a0a14b;
   clip-path: polygon(0 0, 100% 0, 50% 59%);
   transform-origin: top;
-  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    opacity 0.28s ease 0.12s,
+    transform 0.32s ease 0.12s;
 }
 
 .seal {
@@ -474,8 +487,12 @@ a {
 }
 
 .envelope.is-opening .envelope-flap {
-  z-index: 1;
-  transform: rotateX(180deg);
+  opacity: 0;
+  transform: translateY(-4%) scaleY(0.94);
+}
+
+.envelope.is-opening .envelope-back {
+  opacity: 0;
 }
 
 .envelope.is-opening .seal {
@@ -483,10 +500,10 @@ a {
   transform: translate(-50%, -50%) scale(0.6);
 }
 
-.envelope.is-opening .envelope-card {
+.envelope.is-extracting .envelope-card {
   z-index: 2;
   opacity: 1;
-  transform: translateY(-49%);
+  transform: translateY(-82%);
 }
 
 .open-label {
@@ -503,12 +520,29 @@ a {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   cursor: pointer;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .sound-hint {
   margin: 8px 0 0;
   color: rgba(255, 255, 255, 0.58);
   font-size: 0.68rem;
+  transition: opacity 0.25s ease;
+}
+
+.welcome.opening .welcome-copy,
+.welcome.opening .open-label,
+.welcome.opening .sound-hint {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.welcome.opening .welcome-copy {
+  transform: translateY(-8px);
+}
+
+.welcome.opening .open-label {
+  transform: translateY(6px);
 }
 
 main {
@@ -1378,7 +1412,11 @@ footer a {
   transform: translateY(0);
 }
 
-  @media (max-width: 720px) {
+@media (max-width: 720px) {
+  .envelope:focus-visible {
+    outline: none;
+  }
+
   main {
     width: 100dvw;
     max-width: 100dvw;

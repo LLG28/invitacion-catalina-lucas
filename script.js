@@ -108,14 +108,20 @@ accessForm.addEventListener("submit", async (event) => {
 function openInvitation() {
   if (envelope.classList.contains("is-opening")) return;
 
+  welcome.classList.add("opening");
   envelope.classList.add("is-opening");
+
+  window.setTimeout(() => {
+    envelope.classList.add("is-extracting");
+  }, 300);
+
   window.setTimeout(() => {
     welcome.classList.add("opened");
     invitation.classList.add("visible");
     invitation.setAttribute("aria-hidden", "false");
     document.body.classList.remove("locked");
     window.scrollTo({ top: 0, behavior: "instant" });
-  }, 1050);
+  }, 1400);
 }
 
 envelope.addEventListener("click", openInvitation);
