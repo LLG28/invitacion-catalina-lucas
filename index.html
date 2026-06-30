@@ -17,8 +17,8 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Parisienne&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260625-5" />
-    <script src="script.js?v=20260625-2" defer></script>
+    <link rel="stylesheet" href="styles.css?v=20260629-12" />
+    <script src="script.js?v=20260629-4" defer></script>
   </head>
   <body class="locked">
     <div class="grain" aria-hidden="true"></div>
@@ -64,13 +64,19 @@
       <button class="envelope" id="openInvitation" aria-label="Abrir invitación">
         <span class="envelope-back"></span>
         <span class="envelope-card">
-          <span class="card-flower flower-left"></span>
-          <span class="card-flower flower-right"></span>
-          <span class="monogram">C <i>&</i> L</span>
+          <span class="card-invite-title">Invitación matrimonio</span>
+          <span class="monogram">Cata <i>&</i> Lucas</span>
           <span class="card-date">31 · 10 · 2026</span>
+          <span class="card-open-cta">Abrir invitación</span>
         </span>
         <span class="envelope-front"></span>
         <span class="envelope-flap"></span>
+        <img
+          class="envelope-animation"
+          id="envelopeAnimation"
+          alt=""
+          aria-hidden="true"
+        />
         <span class="seal">
           <span class="seal-monogram"><b>C</b><i>&</i><b>L</b></span>
         </span>
@@ -103,14 +109,14 @@
 
         <div class="hero-ornament ornament-top" aria-hidden="true"></div>
         <div class="hero-content reveal">
-          <p class="script-title">¡Nos casamos!</p>
+          <p class="script-title">Nos casamos</p>
           <h2>Cata <span>&</span> Lucas</h2>
           <div class="date-lockup">
             <span>SÁBADO</span>
             <strong>31</strong>
             <span>OCTUBRE<br />2026</span>
           </div>
-          <p class="hero-time">a las 18:00 horas</p>
+          <p class="hero-time">31 de octubre de 2026 · 18:00 horas</p>
           <a class="scroll-cue" href="#historia" aria-label="Continuar">↓</a>
         </div>
         <div class="hero-ornament ornament-bottom" aria-hidden="true"></div>
@@ -122,29 +128,13 @@
           <img src="assets/perro-gran-danes-acuarela.png?v=1" alt="" />
         </figure>
         <div class="section-inner narrow reveal">
-          <p class="eyebrow">Nuestra historia continúa</p>
+          <p class="eyebrow">Con mucho cariño</p>
           <h2>Queremos celebrar<br />este día contigo</h2>
           <p class="lead">
-            Después de tantos caminos compartidos, risas, aprendizajes y sueños,
-            hemos decidido dar el siguiente paso.
+            Hemos decidido dar el siguiente paso y nos encantaría compartir
+            esta celebración con las personas que han sido parte de nuestra historia.
           </p>
           <div class="signature">C & L</div>
-        </div>
-      </section>
-
-      <section class="countdown-section">
-        <div class="countdown-photo" role="img" aria-label="Pareja caminando entre árboles">
-          <div class="photo-overlay"></div>
-          <div class="countdown-content reveal">
-            <p class="eyebrow light">Cada vez falta menos</p>
-            <h2>Para nuestro gran día</h2>
-            <div class="countdown" id="countdown" aria-label="Cuenta regresiva">
-              <div><strong id="days">000</strong><span>Días</span></div>
-              <div><strong id="hours">00</strong><span>Horas</span></div>
-              <div><strong id="minutes">00</strong><span>Minutos</span></div>
-              <div><strong id="seconds">00</strong><span>Segundos</span></div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -186,47 +176,6 @@
         </div>
       </section>
 
-      <section class="timeline-section">
-        <div class="section-heading light-heading reveal">
-          <p class="eyebrow light">Guarda energía</p>
-          <h2>Así viviremos el día</h2>
-        </div>
-        <div class="timeline">
-          <article class="timeline-item reveal">
-            <span class="timeline-art rings" aria-hidden="true">◯◯</span>
-            <div>
-              <time>18:00</time>
-              <h3>Ceremonia</h3>
-              <p>El comienzo de nuestra nueva aventura.</p>
-            </div>
-          </article>
-          <article class="timeline-item reverse reveal">
-            <span class="timeline-art" aria-hidden="true">🥂</span>
-            <div>
-              <time>19:00</time>
-              <h3>Cóctel</h3>
-              <p>Brindemos por los encuentros y el amor.</p>
-            </div>
-          </article>
-          <article class="timeline-item reveal">
-            <span class="timeline-art" aria-hidden="true">✦</span>
-            <div>
-              <time>21:00</time>
-              <h3>Cena</h3>
-              <p>Una mesa larga, rica comida y buena compañía.</p>
-            </div>
-          </article>
-          <article class="timeline-item reverse reveal">
-            <span class="timeline-art disco" aria-hidden="true">◉</span>
-            <div>
-              <time>23:00</time>
-              <h3>Fiesta</h3>
-              <p>Hasta que los pies nos pidan descanso.</p>
-            </div>
-          </article>
-        </div>
-      </section>
-
       <section class="details paper-section">
         <article class="detail-block reveal" id="vestimenta">
           <div class="detail-illustration dress" aria-hidden="true">♢</div>
@@ -255,17 +204,6 @@
             Lista de novios · Próximamente
           </span>
         </article>
-      </section>
-
-      <section class="quote-section">
-        <div class="quote-card reveal">
-          <span class="quote-mark">“</span>
-          <blockquote>
-            El amor no consiste en mirarse el uno al otro, sino en mirar juntos
-            en la misma dirección.
-          </blockquote>
-          <cite>Antoine de Saint-Exupéry</cite>
-        </div>
       </section>
 
       <section class="rsvp paper-section" id="confirmacion">

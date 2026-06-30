@@ -1,6 +1,7 @@
 const welcome = document.querySelector("#welcome");
 const invitation = document.querySelector("#invitation");
 const envelope = document.querySelector("#openInvitation");
+const envelopeAnimation = document.querySelector("#envelopeAnimation");
 const openLabel = document.querySelector("#openLabel");
 const accessGate = document.querySelector("#accessGate");
 const accessForm = document.querySelector("#accessForm");
@@ -110,20 +111,7 @@ function openInvitation() {
 
   envelope.dataset.animation = "running";
   envelope.setAttribute("aria-busy", "true");
-  welcome.classList.add("opening");
-  envelope.classList.add("is-unsealing");
-
-  window.setTimeout(() => {
-    envelope.classList.add("is-flap-open");
-  }, 240);
-
-  window.setTimeout(() => {
-    envelope.classList.add("is-extracting");
-  }, 680);
-
-  window.setTimeout(() => {
-    envelope.classList.add("is-leaving");
-  }, 1500);
+  welcome.classList.add("dissolving");
 
   window.setTimeout(() => {
     welcome.classList.add("opened");
@@ -131,7 +119,7 @@ function openInvitation() {
     invitation.setAttribute("aria-hidden", "false");
     document.body.classList.remove("locked");
     window.scrollTo({ top: 0, behavior: "instant" });
-  }, 1900);
+  }, 420);
 }
 
 envelope.addEventListener("click", openInvitation);
@@ -149,13 +137,17 @@ function updateCountdown() {
   };
 
   Object.entries(values).forEach(([id, value]) => {
+    const element = document.querySelector(`#${id}`);
+    if (!element) return;
     const digits = id === "days" ? 3 : 2;
-    document.querySelector(`#${id}`).textContent = String(value).padStart(digits, "0");
+    element.textContent = String(value).padStart(digits, "0");
   });
 }
 
-updateCountdown();
-window.setInterval(updateCountdown, 1000);
+if (document.querySelector("#days")) {
+  updateCountdown();
+  window.setInterval(updateCountdown, 1000);
+}
 
 const observer = new IntersectionObserver(
   (entries) => {

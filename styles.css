@@ -2,8 +2,8 @@
   --olive: #85862a;
   --olive-dark: #67691f;
   --olive-soft: #9a9b45;
-  --coral: #f0713e;
-  --berry: #970043;
+  --coral: #a4143f;
+  --berry: #a4143f;
   --pink: #d95f88;
   --yellow: #f7d477;
   --blue: #b5cee2;
@@ -58,7 +58,7 @@ body.locked {
   padding: 24px;
   background:
     radial-gradient(circle at 75% 15%, rgba(247, 212, 119, 0.28), transparent 30%),
-    linear-gradient(145deg, var(--berry), #6f0032 58%, var(--olive-dark));
+    linear-gradient(145deg, var(--berry), #7f1033 58%, var(--olive-dark));
   color: var(--white);
   text-align: center;
   transition: opacity 0.6s ease, visibility 0.6s ease;
@@ -449,7 +449,7 @@ a {
   place-content: center;
   border: 1px solid var(--yellow);
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, var(--coral), #bd3f31);
+  background: radial-gradient(circle at 35% 30%, var(--coral), #861033);
   box-shadow: 0 5px 12px rgba(91, 15, 48, 0.28);
   color: var(--yellow);
   font-family: var(--serif);
@@ -759,6 +759,22 @@ main.visible {
     url("assets/papel-textura.jpg") center top / 640px auto repeat;
 }
 
+.paper-section::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: clamp(22px, 6vw, 44px);
+  border: 1px solid rgba(112, 82, 56, 0.12);
+  border-radius: clamp(20px, 5vw, 36px);
+  pointer-events: none;
+  box-shadow:
+    inset 2px 2px 3px rgba(255, 255, 255, 0.62),
+    inset -2px -2px 3px rgba(112, 82, 56, 0.12),
+    inset 0 0 0 1px rgba(151, 0, 67, 0.06),
+    -1px -1px 0 rgba(255, 255, 255, 0.36),
+    1px 1px 0 rgba(112, 82, 56, 0.08);
+}
+
 .paper-section::after {
   content: "";
   position: absolute;
@@ -768,6 +784,13 @@ main.visible {
   left: 5%;
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(151, 0, 67, 0.18), transparent);
+}
+
+.intro::before,
+.venues::before,
+.rsvp::before,
+.paper-section::after {
+  display: none;
 }
 
 .section-inner,
@@ -1425,6 +1448,529 @@ footer a {
   transform: translateY(0);
 }
 
+/* Versión editorial simplificada: móvil primero, una sola carta sobre papel */
+.welcome {
+  gap: 18px;
+  padding: max(34px, env(safe-area-inset-top)) 18px max(26px, env(safe-area-inset-bottom));
+  background:
+    radial-gradient(ellipse at 8% 14%, rgba(247, 212, 119, 0.2) 0 12%, transparent 12.5%),
+    radial-gradient(ellipse at 94% 84%, rgba(217, 95, 136, 0.16) 0 16%, transparent 16.5%),
+    linear-gradient(rgba(255, 250, 242, 0.86), rgba(255, 250, 242, 0.86)),
+    url("assets/papel-textura.jpg") center / 560px auto repeat;
+}
+
+.welcome::before,
+.hero-ornament,
+.hero-content::before,
+.hero-content::after,
+.botanical {
+  display: none;
+}
+
+.welcome::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  display: block;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(255, 255, 255, 0.98), rgba(255, 253, 248, 0.78) 38%, transparent 68%);
+  transform: scale(0.92);
+  transition:
+    opacity 0.72s ease,
+    transform 0.88s cubic-bezier(0.22, 0.75, 0.2, 1);
+}
+
+.welcome.dissolving::after {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+.welcome-copy {
+  max-width: 340px;
+}
+
+.welcome h1 {
+  font-size: clamp(3rem, 17vw, 5rem);
+}
+
+.passes {
+  margin-bottom: 4px;
+  color: rgba(60, 48, 42, 0.72);
+  font-size: 1rem;
+}
+
+.envelope {
+  width: min(90vw, 460px);
+  max-height: 68svh;
+  aspect-ratio: 0.76;
+  filter: drop-shadow(0 24px 34px rgba(74, 55, 38, 0.16));
+  transform-style: preserve-3d;
+  transition:
+    opacity 0.62s ease,
+    transform 0.9s cubic-bezier(0.22, 0.75, 0.2, 1),
+    filter 0.62s ease;
+}
+
+.envelope-back {
+  z-index: 2;
+  overflow: hidden;
+  border: 0;
+  border-radius: 3px;
+  background: url("assets/sobre-cerrado-letterpress-horizontal-simetrico.png") center center / cover no-repeat;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+    0 12px 34px rgba(74, 55, 38, 0.12);
+  transition:
+    opacity 0.72s ease,
+    filter 0.78s ease,
+    transform 0.88s cubic-bezier(0.22, 0.75, 0.2, 1);
+}
+
+.envelope-card {
+  display: none;
+}
+
+.card-flower {
+  display: none;
+  opacity: 0;
+  filter: saturate(0.8);
+}
+
+.monogram {
+  color: rgba(96, 84, 72, 0.28);
+  text-shadow:
+    1px 1px 0 rgba(255, 255, 255, 0.86),
+    -1px -1px 1px rgba(88, 69, 52, 0.18);
+}
+
+.card-date {
+  color: rgba(96, 84, 72, 0.32);
+}
+
+.envelope-front {
+  display: none;
+}
+
+.envelope-front::before {
+  display: none;
+}
+
+.envelope-front::after {
+  display: none;
+}
+
+.envelope-flap {
+  display: none;
+}
+
+.envelope-animation {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 3px;
+  object-fit: cover;
+  object-position: center center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.seal {
+  display: none;
+}
+
+.seal::before {
+  content: "";
+  position: absolute;
+  inset: -28px -38px;
+  display: block;
+  border: 2px solid rgba(248, 246, 240, 0.68);
+  border-radius: 50%;
+  box-shadow:
+    1px 1px 0 rgba(255, 255, 255, 0.95),
+    -1.5px -1.5px 2px rgba(70, 57, 45, 0.28),
+    inset 1px 1px 0 rgba(255, 255, 255, 0.72),
+    inset -1.5px -1.5px 2px rgba(70, 57, 45, 0.2);
+}
+
+.seal::after {
+  content: "";
+  position: absolute;
+  inset: -22px -32px;
+  border: 1px solid rgba(248, 246, 240, 0.5);
+  border-radius: 50%;
+  box-shadow:
+    1px 1px 0 rgba(255, 255, 255, 0.82),
+    -1px -1px 1.6px rgba(70, 57, 45, 0.18);
+}
+
+.seal-monogram {
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, 0.35));
+}
+
+.seal-monogram b {
+  font-size: clamp(1.48rem, 6.5vw, 2.35rem);
+  font-weight: 400;
+}
+
+.seal-monogram i {
+  font-size: clamp(1.55rem, 6.8vw, 2.55rem);
+}
+
+.envelope.is-unsealing .seal {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.94);
+}
+
+.envelope.is-clip-playing .envelope-animation {
+  opacity: 1;
+}
+
+.envelope.is-clip-playing .envelope-back {
+  opacity: 0;
+}
+
+.envelope.is-flap-open .envelope-flap {
+  display: none;
+}
+
+.envelope.is-extracting .envelope-card {
+  display: none;
+}
+
+.envelope.is-extracting .envelope-front {
+  display: none;
+}
+
+.envelope.is-dissolving .envelope-back {
+  opacity: 0.18;
+  filter: blur(7px) brightness(1.42) saturate(0.72);
+  transform: scale(1.035);
+}
+
+.envelope.is-leaving {
+  opacity: 0;
+  filter: drop-shadow(0 8px 12px rgba(74, 55, 38, 0.02));
+  transform: translateY(-8px) scale(1.045);
+}
+
+.envelope.is-leaving .envelope-card {
+  transform: translateY(-4%) scale(1.01);
+}
+
+.open-label {
+  margin-top: 6px;
+}
+
+main.visible {
+  background:
+    linear-gradient(rgba(255, 250, 242, 0.5), rgba(255, 250, 242, 0.5)),
+    url("assets/papel-textura.jpg") center top / 560px auto repeat;
+}
+
+.hero,
+.paper-section,
+.timeline-section,
+.details,
+footer {
+  background:
+    linear-gradient(rgba(255, 250, 242, 0.62), rgba(255, 250, 242, 0.62)),
+    url("assets/papel-textura.jpg") center top / 560px auto repeat;
+}
+
+.hero {
+  min-height: 100svh;
+  padding: 104px 20px 70px;
+  color: var(--ink);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 78px clamp(22px, 6vw, 44px) clamp(22px, 6vw, 44px);
+  border: 1px solid rgba(112, 82, 56, 0.12);
+  border-radius: clamp(20px, 5vw, 36px);
+  pointer-events: none;
+  box-shadow:
+    inset 2px 2px 3px rgba(255, 255, 255, 0.62),
+    inset -2px -2px 3px rgba(112, 82, 56, 0.12),
+    inset 0 0 0 1px rgba(151, 0, 67, 0.06),
+    -1px -1px 0 rgba(255, 255, 255, 0.36),
+    1px 1px 0 rgba(112, 82, 56, 0.08);
+}
+
+.quick-nav {
+  position: fixed;
+  border-bottom: 1px solid rgba(151, 0, 67, 0.1);
+  background: rgba(255, 249, 239, 0.82);
+  box-shadow: 0 10px 30px rgba(82, 49, 35, 0.07);
+}
+
+.quick-nav a {
+  min-height: 58px;
+  border-right: 1px solid rgba(151, 0, 67, 0.08);
+  color: rgba(60, 48, 42, 0.76);
+  font-size: 0.52rem;
+}
+
+.quick-nav a span {
+  color: var(--berry);
+  font-size: 1.05rem;
+}
+
+.script-title {
+  color: var(--coral);
+  font-size: clamp(3rem, 16vw, 5.8rem);
+}
+
+.hero h2 {
+  margin: 10px 0 28px;
+  font-size: clamp(3.5rem, 19vw, 7rem);
+}
+
+.date-lockup {
+  margin-top: 0;
+}
+
+.hero-time {
+  max-width: 260px;
+  margin: 22px auto 0;
+  color: rgba(60, 48, 42, 0.72);
+}
+
+.scroll-cue {
+  margin-top: 32px;
+  border-color: rgba(151, 0, 67, 0.26);
+  color: var(--berry);
+}
+
+.intro,
+.venues,
+.timeline-section,
+.details,
+.rsvp {
+  padding: clamp(72px, 18vw, 120px) 20px;
+}
+
+.section-inner h2,
+.section-heading h2,
+.detail-block h2 {
+  font-size: clamp(2.55rem, 13vw, 4.7rem);
+}
+
+.lead {
+  margin: 24px auto;
+  color: rgba(60, 48, 42, 0.78);
+  font-size: clamp(1.15rem, 5vw, 1.35rem);
+}
+
+.dog-decoration {
+  width: clamp(112px, 31vw, 185px);
+  opacity: 0.54;
+}
+
+.dog-decoration img {
+  opacity: 0.72;
+  filter: saturate(0.58) contrast(0.88);
+}
+
+.dog-dane,
+.dog-collie {
+  right: -38px;
+  bottom: -22px;
+}
+
+.dog-golden {
+  left: -36px;
+  bottom: -24px;
+}
+
+.venue-grid {
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: clamp(52px, 12vw, 72px);
+}
+
+.venue-card,
+.dark-card,
+.rsvp-form {
+  border: 1px solid rgba(151, 0, 67, 0.14);
+  border-radius: 18px;
+  background:
+    linear-gradient(rgba(255, 250, 242, 0.68), rgba(255, 250, 242, 0.68)),
+    url("assets/papel-textura.jpg") center / 520px auto repeat;
+  box-shadow: 0 16px 44px rgba(82, 49, 35, 0.08);
+  color: var(--ink);
+}
+
+.venue-card,
+.rsvp-form {
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.64),
+    inset -1px -1px 0 rgba(112, 82, 56, 0.12),
+    0 16px 44px rgba(82, 49, 35, 0.08);
+}
+
+.venue-card {
+  padding: 38px 22px;
+}
+
+.venue-icon,
+.detail-illustration {
+  width: 58px;
+  height: 58px;
+  margin-bottom: 18px;
+  border-color: rgba(151, 0, 67, 0.28);
+  color: var(--berry);
+  font-size: 1.8rem;
+}
+
+.card-kicker,
+.dark-card .card-kicker {
+  color: var(--coral);
+}
+
+.button-light {
+  border-color: var(--berry);
+  color: var(--berry);
+}
+
+.timeline-section {
+  color: var(--ink);
+}
+
+.light-heading h2 {
+  color: var(--ink);
+}
+
+.timeline {
+  max-width: 560px;
+  margin-top: 42px;
+}
+
+.timeline::before {
+  left: 27px;
+  border-left: 1px solid rgba(151, 0, 67, 0.2);
+}
+
+.timeline-item,
+.timeline-item.reverse {
+  display: block;
+  min-height: 0;
+  margin-bottom: 34px;
+  padding-left: 78px;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-item::after {
+  top: 30px;
+  left: 27px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--paper);
+  background: var(--coral);
+  box-shadow: 0 0 0 1px rgba(151, 0, 67, 0.24);
+  transform: translate(-50%, -50%);
+}
+
+.timeline-item > div,
+.timeline-item.reverse > div {
+  text-align: left;
+}
+
+.timeline-art,
+.reverse .timeline-art {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  display: grid;
+  width: 54px;
+  place-items: center;
+  color: var(--berry);
+  font-size: 1.6rem;
+  line-height: 1;
+  text-align: center;
+  transform: translateY(-50%);
+}
+
+.timeline-item time {
+  color: var(--berry);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.timeline-item h3 {
+  margin: 7px 0 4px;
+  font-size: 1.65rem;
+}
+
+.timeline-item p {
+  max-width: 360px;
+  color: rgba(60, 48, 42, 0.7);
+}
+
+.details {
+  grid-template-columns: 1fr;
+  gap: 54px;
+  padding-inline: clamp(28px, 8vw, 72px);
+}
+
+.detail-divider {
+  transform: none;
+  text-align: center;
+}
+
+.detail-block {
+  width: min(100%, 560px);
+  padding-inline: clamp(22px, 7vw, 54px);
+}
+
+.detail-block p:not(.eyebrow) {
+  max-width: 34ch;
+  min-height: 0;
+  margin-inline: auto;
+  text-wrap: pretty;
+}
+
+.button-coming-soon {
+  width: min(100%, 360px);
+  min-width: 0;
+  padding-inline: 16px;
+  white-space: normal;
+}
+
+.rsvp-form {
+  margin-top: 36px;
+  padding: 28px 20px;
+}
+
+fieldset {
+  grid-template-columns: 1fr;
+}
+
+footer {
+  color: var(--ink);
+}
+
+footer p,
+.footer-monogram {
+  color: var(--berry);
+}
+
+footer a {
+  color: rgba(60, 48, 42, 0.64);
+}
+
 @media (max-width: 720px) {
   .envelope:focus-visible {
     outline: none;
@@ -1462,7 +2008,7 @@ footer a {
   }
 
   .envelope {
-    width: min(90vw, 390px);
+    width: min(94vw, 440px);
   }
 
   .quick-nav a {
@@ -1703,6 +2249,323 @@ footer a {
   }
 }
 
+/* Pantalla inicial inspirada en Kippis: sobre abierto + carta que sube */
+.welcome {
+  place-content: center;
+  gap: 0;
+  min-height: 100svh;
+  padding: max(18px, env(safe-area-inset-top)) 0 max(18px, env(safe-area-inset-bottom));
+  background:
+    radial-gradient(ellipse at 10% 8%, rgba(247, 212, 119, 0.16) 0 14%, transparent 14.5%),
+    radial-gradient(ellipse at 94% 92%, rgba(217, 95, 136, 0.13) 0 17%, transparent 17.5%),
+    linear-gradient(rgba(255, 251, 244, 0.84), rgba(255, 251, 244, 0.84)),
+    url("assets/papel-textura.jpg") center / 560px auto repeat;
+}
+
+.welcome-copy,
+.open-label,
+.sound-hint {
+  display: none !important;
+}
+
+.envelope {
+  width: 100vw !important;
+  height: 100svh !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+  aspect-ratio: auto !important;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  filter: none;
+  overflow: hidden;
+}
+
+.envelope-back {
+  z-index: 1;
+  border-radius: 0;
+  background: url("assets/sobre-abierto-papel-extendido-hq-v3.png") center center / cover no-repeat;
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+.envelope-animation,
+.envelope-front,
+.envelope-flap,
+.seal,
+.card-flower,
+.envelope-card {
+  display: none !important;
+}
+
+.envelope-card {
+  position: absolute;
+  z-index: 9;
+  top: clamp(118px, 17svh, 180px);
+  left: 50%;
+  display: grid !important;
+  width: min(78vw, 390px);
+  min-height: clamp(250px, 42svh, 390px);
+  padding: clamp(28px, 7vw, 44px) clamp(22px, 6vw, 36px);
+  place-items: center;
+  align-content: center;
+  gap: 14px;
+  border: 1px solid rgba(151, 0, 67, 0.12);
+  border-radius: 2px;
+  background:
+    linear-gradient(rgba(255, 251, 244, 0.91), rgba(255, 251, 244, 0.91)),
+    url("assets/papel-textura.jpg") center / 520px auto repeat;
+  box-shadow:
+    0 18px 32px rgba(74, 55, 38, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.52);
+  color: var(--ink);
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  transition:
+    opacity 0.52s ease,
+    transform 1.02s cubic-bezier(0.18, 0.78, 0.22, 1);
+}
+
+.card-invite-title {
+  color: var(--berry);
+  font-family: var(--sans);
+  font-size: clamp(0.68rem, 2.8vw, 0.82rem);
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.monogram {
+  position: static;
+  display: block;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: clamp(3.05rem, 16vw, 5.2rem);
+  font-weight: 400;
+  line-height: 0.88;
+  text-shadow: none;
+  white-space: normal;
+}
+
+.monogram i {
+  color: var(--coral);
+  font-family: var(--script);
+  font-size: 0.72em;
+  font-style: normal;
+}
+
+.card-date {
+  position: static;
+  color: rgba(60, 48, 42, 0.64);
+  font-family: var(--sans);
+  font-size: clamp(0.68rem, 2.8vw, 0.82rem);
+  font-weight: 500;
+  letter-spacing: 0.34em;
+}
+
+.card-open-cta {
+  display: inline-grid;
+  min-width: min(64vw, 260px);
+  margin-top: 16px;
+  padding: 14px 22px;
+  place-items: center;
+  border: 1px solid rgba(151, 0, 67, 0.28);
+  border-radius: 999px;
+  color: var(--berry);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  background: rgba(255, 251, 244, 0.58);
+  box-shadow:
+    1px 1px 0 rgba(255, 255, 255, 0.72),
+    -1px -1px 1px rgba(70, 57, 45, 0.08);
+}
+
+.envelope:hover .card-open-cta {
+  background: rgba(255, 251, 244, 0.78);
+}
+
+.envelope.is-extracting .envelope-card {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-82svh) scale(0.985);
+}
+
+.welcome.dissolving {
+  opacity: 0;
+  transform: translateY(-16px);
+  transition:
+    opacity 0.52s ease,
+    transform 0.64s cubic-bezier(0.22, 0.75, 0.2, 1);
+}
+
+.welcome.dissolving::after {
+  opacity: 0;
+}
+
+@media (min-width: 760px) {
+  .envelope-card {
+    top: clamp(130px, 16svh, 190px);
+    width: min(44vw, 430px);
+  }
+}
+
+/* Portada: texto integrado directamente sobre el sobre, sin tarjeta blanca */
+.welcome .envelope-card {
+  top: 49%;
+  left: 50%;
+  width: min(76vw, 400px);
+  min-height: auto;
+  padding: 0 clamp(10px, 4vw, 22px);
+  gap: clamp(6px, 1.9vw, 11px);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: color-mix(in srgb, var(--ink) 82%, var(--paper-shadow));
+  transform: translate(-50%, -50%);
+}
+
+.welcome .envelope-card::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -18px -12px;
+  border-radius: 999px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 250, 242, 0.28) 0 28%,
+    rgba(255, 250, 242, 0.12) 56%,
+    transparent 74%
+  );
+  filter: blur(7px);
+  pointer-events: none;
+}
+
+.welcome .card-invite-title {
+  color: rgba(151, 0, 67, 0.72);
+  font-size: clamp(0.54rem, 2.2vw, 0.68rem);
+  letter-spacing: 0.24em;
+  line-height: 1.2;
+  text-shadow:
+    0.7px 0.7px 0 rgba(255, 255, 255, 0.58),
+    -0.6px -0.6px 0 rgba(112, 82, 56, 0.08);
+}
+
+.welcome .monogram {
+  color: rgba(56, 45, 39, 0.86);
+  font-size: clamp(2.75rem, 14vw, 4.85rem);
+  line-height: 0.78;
+  text-shadow:
+    1px 1px 0 rgba(255, 255, 255, 0.68),
+    -1px -1px 1px rgba(112, 82, 56, 0.13);
+}
+
+.welcome .monogram i {
+  color: rgba(151, 0, 67, 0.78);
+  text-shadow:
+    0.8px 0.8px 0 rgba(255, 255, 255, 0.55),
+    -0.8px -0.8px 1px rgba(112, 82, 56, 0.1);
+}
+
+.welcome .card-date {
+  color: rgba(60, 48, 42, 0.52);
+  font-size: clamp(0.54rem, 2.25vw, 0.68rem);
+  letter-spacing: 0.28em;
+  line-height: 1.2;
+  text-shadow: 0.7px 0.7px 0 rgba(255, 255, 255, 0.56);
+}
+
+.welcome .card-open-cta {
+  min-width: min(58vw, 238px);
+  margin-top: clamp(5px, 1.8vw, 10px);
+  padding: 10px 17px;
+  border-color: rgba(151, 0, 67, 0.2);
+  color: rgba(151, 0, 67, 0.78);
+  background: rgba(255, 250, 242, 0.28);
+  box-shadow:
+    inset 1px 1px 1px rgba(255, 255, 255, 0.52),
+    inset -1px -1px 1.5px rgba(112, 82, 56, 0.08);
+}
+
+.envelope.is-extracting .welcome .envelope-card,
+.welcome .envelope.is-extracting .envelope-card {
+  opacity: 0;
+  transform: translate(-50%, -150%);
+}
+
+/* Integración de texto con fondo papel: más impreso, menos superpuesto */
+.hero-content {
+  width: min(88vw, 560px);
+  padding: clamp(32px, 9vw, 58px) clamp(18px, 7vw, 46px);
+  border-radius: clamp(18px, 5vw, 34px);
+  background:
+    linear-gradient(rgba(255, 250, 242, 0.36), rgba(255, 250, 242, 0.18)),
+    url("assets/papel-textura.jpg") center / 560px auto repeat;
+  box-shadow:
+    inset 1px 1px 1.5px rgba(255, 255, 255, 0.52),
+    inset -1px -1px 2px rgba(112, 82, 56, 0.08);
+}
+
+.hero .script-title {
+  color: color-mix(in srgb, var(--coral) 78%, var(--paper-shadow));
+  opacity: 0.92;
+  text-shadow:
+    0.8px 0.8px 0 rgba(255, 255, 255, 0.56),
+    -0.8px -0.8px 0 rgba(112, 82, 56, 0.12);
+}
+
+.hero h2 {
+  color: color-mix(in srgb, var(--ink) 82%, var(--paper-shadow));
+  text-shadow:
+    1px 1px 0 rgba(255, 255, 255, 0.62),
+    -1px -1px 1px rgba(112, 82, 56, 0.11);
+}
+
+.hero h2 span {
+  color: color-mix(in srgb, var(--berry) 82%, var(--paper-shadow));
+  text-shadow:
+    0.8px 0.8px 0 rgba(255, 255, 255, 0.58),
+    -0.8px -0.8px 1px rgba(112, 82, 56, 0.12);
+}
+
+.date-lockup span,
+.hero-time {
+  color: rgba(60, 48, 42, 0.58);
+  text-shadow: 0.7px 0.7px 0 rgba(255, 255, 255, 0.55);
+}
+
+.date-lockup span {
+  border-color: rgba(151, 0, 67, 0.22);
+}
+
+.date-lockup strong {
+  color: color-mix(in srgb, var(--coral) 74%, var(--paper-shadow));
+  text-shadow:
+    0.8px 0.8px 0 rgba(255, 255, 255, 0.55),
+    -0.8px -0.8px 1px rgba(112, 82, 56, 0.1);
+}
+
+.scroll-cue {
+  background: rgba(255, 250, 242, 0.18);
+  box-shadow:
+    inset 1px 1px 1px rgba(255, 255, 255, 0.55),
+    inset -1px -1px 1.5px rgba(112, 82, 56, 0.1);
+  color: rgba(60, 48, 42, 0.52);
+}
+
+/* Ajustes temporales: sin perros y sin textura desfasada en primera sección */
+.dog-decoration {
+  display: none !important;
+}
+
+.hero-content {
+  background: rgba(255, 250, 242, 0.18);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -1712,4 +2575,3 @@ footer a {
     transition-duration: 0.01ms !important;
   }
 }
-  color: var(--olive-dark);
