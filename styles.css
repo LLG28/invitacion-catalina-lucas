@@ -1690,6 +1690,61 @@ footer {
   color: var(--ink);
 }
 
+.section-floral {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+.section-floral {
+  opacity: 0.38;
+  mix-blend-mode: multiply;
+  filter: saturate(0.78) contrast(0.92);
+}
+
+.floral-corner {
+  width: clamp(150px, 32vw, 310px);
+}
+
+.floral-corner-top-left {
+  top: clamp(18px, 4vw, 42px);
+  left: clamp(10px, 3vw, 34px);
+}
+
+.floral-corner-top-right {
+  top: clamp(18px, 4vw, 42px);
+  right: clamp(10px, 3vw, 34px);
+}
+
+.floral-corner-bottom-left {
+  bottom: clamp(18px, 4vw, 42px);
+  left: clamp(8px, 2vw, 26px);
+}
+
+.floral-corner-bottom-right {
+  right: clamp(8px, 2vw, 26px);
+  bottom: clamp(18px, 4vw, 42px);
+}
+
+.floral-side {
+  top: 50%;
+  width: clamp(82px, 17vw, 160px);
+  max-height: 72%;
+  object-fit: contain;
+  opacity: 0.28;
+  transform: translateY(-50%);
+}
+
+.floral-side-left {
+  left: max(-34px, calc((100vw - 1180px) / 2 - 96px));
+}
+
+.floral-side-right {
+  right: max(-34px, calc((100vw - 1180px) / 2 - 96px));
+}
+
 .hero::before {
   content: "";
   position: absolute;
@@ -2564,6 +2619,97 @@ footer a {
 
 .hero-content {
   background: rgba(255, 250, 242, 0.18);
+}
+
+/* Integración de assets acuarela */
+.venue-art {
+  width: min(100%, 380px);
+  margin: -8px auto 18px;
+}
+
+.venue-art img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  opacity: 0.82;
+  mix-blend-mode: multiply;
+  filter: saturate(0.72) contrast(0.92);
+  -webkit-mask-image: radial-gradient(
+    ellipse 58% 50% at center,
+    #000 50%,
+    rgba(0, 0, 0, 0.76) 72%,
+    transparent 94%
+  );
+  mask-image: radial-gradient(
+    ellipse 58% 50% at center,
+    #000 50%,
+    rgba(0, 0, 0, 0.76) 72%,
+    transparent 94%
+  );
+}
+
+.venue-card .venue-icon {
+  margin-top: 4px;
+}
+
+.rsvp-car {
+  width: min(86vw, 500px);
+  margin: 22px auto -8px;
+}
+
+.rsvp-car img {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 0.74;
+  mix-blend-mode: multiply;
+  filter: saturate(0.72) contrast(0.92);
+  -webkit-mask-image: radial-gradient(
+    ellipse 58% 50% at center,
+    #000 48%,
+    rgba(0, 0, 0, 0.76) 72%,
+    transparent 94%
+  );
+  mask-image: radial-gradient(
+    ellipse 58% 50% at center,
+    #000 48%,
+    rgba(0, 0, 0, 0.76) 72%,
+    transparent 94%
+  );
+}
+
+@media (max-width: 720px) {
+  .section-floral {
+    opacity: 0.25;
+  }
+
+  .floral-corner {
+    width: clamp(118px, 40vw, 190px);
+  }
+
+  .floral-side {
+    width: 82px;
+    opacity: 0.18;
+  }
+
+  .floral-side-left {
+    left: -44px;
+  }
+
+  .floral-side-right {
+    right: -44px;
+  }
+
+  .venue-art {
+    width: min(100%, 320px);
+    margin-bottom: 12px;
+  }
+
+  .rsvp-car {
+    width: min(92vw, 360px);
+    margin-top: 12px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
