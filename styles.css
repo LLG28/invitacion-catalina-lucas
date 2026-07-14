@@ -4484,3 +4484,10 @@ footer a {
     padding-block: 8px;
   }
 }
+
+/* Formulario: selección en burdeo principal */
+.radio-card input:checked + span {
+  border-color: var(--text-burgundy);
+  background: var(--text-burgundy);
+  color: var(--white);
+}
